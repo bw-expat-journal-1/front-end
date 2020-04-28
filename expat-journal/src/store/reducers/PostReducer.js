@@ -1,5 +1,4 @@
 import {
-<<<<<<< HEAD
     FETCH_POST_DATA,
     FETCH_POST_SUCCESS,
     FETCH_POST_FAILURE,
@@ -17,21 +16,6 @@ import {
 } from "../actions/PostActions"
 
 
-=======
-  FETCH_POST_DATA,
-  FETCH_POST_SUCCESS,
-  FETCH_POST_FAILURE,
-  ADD_POST_DATA,
-  ADD_POST_SUCCESS,
-  ADD_POST_FAILURE,
-  UPDATE_POST_DATA,
-  UPDATE_POST_SUCCESS,
-  UPDATE_POST_FAILURE,
-  DELETE_POST_DATA,
-  DELETE_POST_SUCCESS,
-  DELETE_POST_FAILURE,
-} from "./actions/PostActions";
->>>>>>> f791f3a7abe5f04ecfc9ba9f447c8f426f39879f
 
 const initialState = {
   post: [],
