@@ -1,96 +1,93 @@
-import React, { useState, useEffect }from 'react';
-import * as yup from 'yup';
+import React, { useState, useEffect } from "react";
+import * as yup from "yup";
 
 const initialFormValues = {
-    username: '',
-    password: '',
-  }
-  
-  const initialFormErrors = {
-    username: '',
-    password: '',
-  }
-  //FORM SCHEMA for login page 
-  const formSchema = yup.object().shape({
-    username: yup
-      .string()
-      .required('username is required'),
-    password: yup
-      .string()
-      .required('password is required'),
-  })
+  username: "",
+  password: "",
+};
 
-  function Login() {
-    const [login, setLogin] = useState([])
-    const [formValues, setFormValues] = useState(initialFormValues)
-    const [formErrors, setFormErrors] = useState(initialFormErrors)
-    const [formDisabled, setFormDisabled] = useState(true)
+const initialFormErrors = {
+  username: "",
+  password: "",
+};
+//FORM SCHEMA for login page
+const formSchema = yup.object().shape({
+  username: yup.string().required("username is required"),
+  password: yup.string().required("password is required"),
+});
 
-    //DISABLES submit button until all form values are entered without errors
-    useEffect(() => {
-      formSchema.isValid(formValues)
-        .then(valid => {
-          setFormDisabled(!valid)
-        })
-    }, [formValues])
+export const Login = () => {
+  const [login, setLogin] = useState([]);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [formDisabled, setFormDisabled] = useState(true);
 
-    //INPUT CHANGES
-    const onInputChange = evt => {
-      const name = evt.target.name
-      const value = evt.target.value
-      //VALIDATES the form and checks for any errors
-      yup
+  //DISABLES submit button until all form values are entered without errors
+  useEffect(() => {
+    formSchema.isValid(formValues).then((valid) => {
+      setFormDisabled(!valid);
+    });
+  }, [formValues]);
+
+  //INPUT CHANGES
+  const onInputChange = (evt) => {
+    const name = evt.target.name;
+    const value = evt.target.value;
+    //VALIDATES the form and checks for any errors
+    yup
       .reach(formSchema, name)
       .validate(value)
-      .then(valid => {
+      .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [name]: '',
-        })
+          [name]: "",
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         setFormErrors({
           ...formErrors,
-          [name]: err.errors[0]
-        })
-      })
-      setFormValues({...formValues, [name]: value},)
-    }
+          [name]: err.errors[0],
+        });
+      });
+    setFormValues({ ...formValues, [name]: value });
+  };
 
-    //SUBMITS
-    const onSubmit = evt => {
-      evt.preventDefault()
-  
-      const newLogin = {
-        username: formValues.username,
-        password: formValues.password,
-      }
-      setLogin([ ...login, newLogin ])
-      setFormValues(initialFormValues)
-    }
-    return(
-      <div className='login'>
-        <header><h1>ExPat Journal</h1></header>
+  //SUBMITS
+  const onSubmit = (evt) => {
+    evt.preventDefault();
 
-        <label>Username </label>
-        <input 
+    const newLogin = {
+      username: formValues.username,
+      password: formValues.password,
+    };
+    setLogin([...login, newLogin]);
+    setFormValues(initialFormValues);
+  };
+  return (
+    <div className="login">
+      <header>
+        <h1>ExPat Journal</h1>
+      </header>
+
+      <label>Username </label>
+      <input
         value={formValues.username}
-        type='text' 
-        name ='username'
+        type="text"
+        name="username"
         onChange={onInputChange}
-        />
+      />
 
-        <label>Password </label>
-        <input 
+      <label>Password </label>
+      <input
         value={formValues.password}
-        type='password'
-        name='password'
+        type="password"
+        name="password"
         onChange={onInputChange}
-        />
+      />
 
-        <button onClick={onSubmit} disabled={formDisabled}>Login</button>
-      </div>
-    )
-  }
-
-  export default Login
+      <button onClick={onSubmit} disabled={formDisabled}>
+        Login
+      </button>
+    </div>
+  );
+};
