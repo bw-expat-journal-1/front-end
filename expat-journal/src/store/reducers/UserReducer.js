@@ -1,6 +1,12 @@
-const LOGIN_PENDING = "LOGIN_PENDING";
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-const LOGIN_ERROR = "LOGIN_ERROR";
+// const LOGIN_PENDING = "LOGIN_PENDING";
+// const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+// const LOGIN_ERROR = "LOGIN_ERROR";
+
+import {
+  LOGIN_PENDING,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+} from "../actions/loginAction";
 
 const initialState = {
   id: "",
