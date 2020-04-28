@@ -24,7 +24,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.login(this.state.account).then(() => {
       console.log("Credentials accepted", this.state);
-      this.props.history.push("/register");
+      this.props.history.push("/");
     });
   };
 
