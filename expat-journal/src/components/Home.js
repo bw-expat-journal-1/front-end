@@ -10,6 +10,9 @@ export const Home = () => {
       <Link className="homeLink" to="/register">
         Register
       </Link>
+      <Link className="homeLink" to="/post">
+        Post
+      </Link>
     </div>
   );
 };

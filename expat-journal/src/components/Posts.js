@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-import {fetchPosts} from "../actions/PostActions";
+import {fetchPosts, addPost} from "../store/actions/PostActions";
 import PostForm from "./PostForm";
 
 

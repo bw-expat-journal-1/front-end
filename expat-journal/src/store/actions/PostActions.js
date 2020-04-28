@@ -4,17 +4,17 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 export const fetchPosts = () => {
   return dispatch => {
-    dispatch({ type: 'FETCH_POSTS_DATA' });
+    dispatch({ type: FETCH_POST_DATA});
     axiosWithAuth()
       .get('')
       .then(res => {
-        dispatch({ type: 'FETCH_POST_SUCCESS', payload: res.data});
+        dispatch({ type: FETCH_POST_SUCCESS, payload: res.data});
       })
       .catch(err => {
-        console.log(err.response);
+        console.log(err);
         dispatch({
-          type: 'FETCH_POST_FAILURE',
-          payload: `Error ${err.response.status}: ${err.response.data}`
+          type: FETCH_POST_FAILURE,
+          payload: err
         });
       });
   };
@@ -22,14 +22,18 @@ export const fetchPosts = () => {
 
 export const addPost = newPost => {
     return dispatch => {
-        dispatch({ type: 'ADD_POSTS_DATA' });
+        dispatch({ type: ADD_POST_DATA });
         axiosWithAuth()
         .post(``, newPost)
         .then(res => {
-            dispatch({ type: 'ADD_POST_SUCCESS', payload: res.data});
+            dispatch({ type: ADD_POST_SUCCESS, payload: res.data});
         })
-        .catch(error => {
-          console.log("the data was not posted", error);
+        .catch(err => {
+            console.log(err);
+            dispatch({
+              type: ADD_POST_FAILURE,
+              payload: err
+            });
         });
       };
     };
@@ -37,28 +41,37 @@ export const addPost = newPost => {
 
 export const removePost = id => {
     return dispatch => {
-        dispatch({ type: 'DELETE_POSTS_DATA', id: id });
+        dispatch({ type: DELETE_POST_DATA, id: id });
         axiosWithAuth()
         .delete(``)
         .then(res => {
-            dispatch({ type: 'DELETE_POST_SUCCESS', id: id});
+            console.log(res);
+            dispatch({ type: DELETE_POST_SUCCESS, id: id});
         })
-        .catch(error => {
-          console.log("the data was not deleted", error);
+        .catch(err => {
+            console.log(err);
+            dispatch({
+              type: DELETE_POST_FAILURE,
+              payload: err
+            });
         });
     }
 }
 
 export const updatePost = newPost => {
     return dispatch => {
-        dispatch({ type: 'UPDATE_POSTS_DATA' });
+        dispatch({ type: UPDATE_POST_DATA });
         axiosWithAuth()
         .put(``, newPost)
         .then(res => {
-            dispatch({ type: 'UPDATE_POST_SUCCESS', payload: res.data});
+            dispatch({ type:UPDATE_POST_SUCCESS, payload: res.data});
         })
-        .catch(error => {
-          console.log("the data was not updated", error);
+        .catch(err => {
+          console.log(err);
+          dispatch({
+            type: UPDATE_POST_FAILURE,
+            payload: err
+          });
         });
       };
     };
