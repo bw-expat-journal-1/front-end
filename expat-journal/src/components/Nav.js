@@ -10,7 +10,7 @@ export const Nav = () => {
         <Link className="link" to="/">
           Home
         </Link>
-        <Link className="link" to="">
+        <Link className="link" to="/login">
           Login
         </Link>
         <Link className="link" to="/register">

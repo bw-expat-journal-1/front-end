@@ -5,7 +5,9 @@ import "./App.css";
 import { Register } from "./components/Register";
 import { Home } from "./components/Home";
 import { Nav } from "./components/Nav";
+
 import Posts from "./components/Posts";
+import Login from "./components/Login";
 function App() {
   return (
     <Router>
@@ -13,6 +15,7 @@ function App() {
         <Nav />
 
         <Switch>
+          <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route path="/" component={Home} />
           <Route path="/post" component={Posts} />

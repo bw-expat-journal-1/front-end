@@ -24,11 +24,11 @@ export const fetchPosts = () => {
       .then(res => {
         dispatch({ type: FETCH_POST_SUCCESS, payload: res.data});
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         dispatch({
           type: FETCH_POST_FAILURE,
-          payload: err
+          payload: err,
         });
       });
   };
@@ -49,8 +49,8 @@ export const addPost = newPost => {
               payload: err
             });
         });
-      };
-    };
+      }
+  };
 
 
 export const removePost = id => {
@@ -69,8 +69,9 @@ export const removePost = id => {
               payload: err
             });
         });
-    }
-}
+      };
+  };
+
 
 export const updatePost = newPost => {
     return dispatch => {
@@ -87,8 +88,6 @@ export const updatePost = newPost => {
             payload: err
           });
         });
-      };
-    };
-
-
+      }
+  };
 
