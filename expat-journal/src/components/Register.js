@@ -1,67 +1,80 @@
 import React, { useState } from "react";
 
-export const Register = () => {
-  const [newAccount, setNewAccount] = useState({
-    username: "",
-    password: "",
-    email: "",
-    age: "",
-    terms: false,
-  });
+export class Register extends React.Component {
+  state = {
+    newAccount: {
+      username: "",
+      password: "",
+      email: "",
+      name: "",
+      age: "",
+      terms: false,
+    },
+  };
 
-  const changeHandler = (e) => {
+  changeHandler = (e) => {
     const value = e.target.name === "terms" ? e.target.checked : e.target.value;
-    setNewAccount({
-      ...newAccount,
-      [e.target.name]: value,
+    this.setState({
+      newAccount: {
+        ...this.state.newAccount,
+        [e.target.name]: value,
+      },
     });
   };
 
-  return (
-    <div>
-      <label>Username: </label>
-      <input
-        type="text"
-        name="username"
-        value={newAccount.username}
-        onChange={changeHandler}
-      />
+  render() {
+    return (
+      <form>
+        <label>Username: </label>
+        <input
+          type="text"
+          name="username"
+          value={this.state.newAccount.username}
+          onChange={this.changeHandler}
+        />
 
-      <label>Password: </label>
-      <input
-        type="text"
-        name="password"
-        value={newAccount.password}
-        onChange={changeHandler}
-      />
+        <label>Password: </label>
+        <input
+          type="text"
+          name="password"
+          value={this.state.newAccount.password}
+          onChange={this.changeHandler}
+        />
 
-      <label>Email: </label>
-      <input
-        type="text"
-        name="email"
-        value={newAccount.email}
-        onChange={changeHandler}
-      />
+        <label>Email: </label>
+        <input
+          type="text"
+          name="email"
+          value={this.state.newAccount.email}
+          onChange={this.changeHandler}
+        />
 
-      <label>Age: </label>
-      <input
-        type="text"
-        name="age"
-        value={newAccount.age}
-        onChange={changeHandler}
-      />
+        <label>Name: </label>
+        <input
+          type="text"
+          name="name"
+          value={this.state.newAccount.name}
+          onChange={this.changeHandler}
+        />
 
-      <input
-        type="checkbox"
-        name="terms"
-        value={newAccount.terms}
-        onChange={changeHandler}
-      />
-      <span>Terms and conditions</span>
+        <label>Age: </label>
+        <input
+          type="text"
+          name="age"
+          value={this.state.newAccount.age}
+          onChange={this.changeHandler}
+        />
 
-      <button>Register</button>
-    </div>
-  );
-};
+        <input
+          type="checkbox"
+          name="terms"
+          value={this.state.newAccount.terms}
+          onChange={this.changeHandler}
+        />
+        <span>Terms and conditions</span>
 
-// username , password, email, name, age, terms and conditions.
+        <button>Register</button>
+      </form>
+    );
+  }
+}

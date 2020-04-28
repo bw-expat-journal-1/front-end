@@ -1,93 +1,59 @@
-import React, { useState, useEffect } from "react";
-import * as yup from "yup";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { login } from "../store/actions/loginAction";
 
-const initialFormValues = {
-  username: "",
-  password: "",
-};
+class Login extends React.Component {
+  state = {
+    account: {
+      username: "",
+      password: "",
+    },
+  };
 
-const initialFormErrors = {
-  username: "",
-  password: "",
-};
-//FORM SCHEMA for login page
-const formSchema = yup.object().shape({
-  username: yup.string().required("username is required"),
-  password: yup.string().required("password is required"),
-});
-
-export const Login = () => {
-  const [login, setLogin] = useState([]);
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const [formDisabled, setFormDisabled] = useState(true);
-
-  //DISABLES submit button until all form values are entered without errors
-  useEffect(() => {
-    formSchema.isValid(formValues).then((valid) => {
-      setFormDisabled(!valid);
+  changeHandler = (e) => {
+    e.preventDefault();
+    this.setState({
+      account: {
+        ...this.state.account,
+        [e.target.name]: e.target.value,
+      },
     });
-  }, [formValues]);
-
-  //INPUT CHANGES
-  const onInputChange = (evt) => {
-    const name = evt.target.name;
-    const value = evt.target.value;
-    //VALIDATES the form and checks for any errors
-    yup
-      .reach(formSchema, name)
-      .validate(value)
-      .then((valid) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: "",
-        });
-      })
-      .catch((err) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: err.errors[0],
-        });
-      });
-    setFormValues({ ...formValues, [name]: value });
   };
 
-  //SUBMITS
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-
-    const newLogin = {
-      username: formValues.username,
-      password: formValues.password,
-    };
-    setLogin([...login, newLogin]);
-    setFormValues(initialFormValues);
+  submitHandler = (e) => {
+    e.preventDefault();
+    this.props.login(this.state.account).then(() => {
+      console.log("Credentials accepted", this.state);
+      this.props.history.push("");
+    });
   };
-  return (
-    <div className="login">
-      <header>
-        <h1>ExPat Journal</h1>
-      </header>
 
-      <label>Username </label>
-      <input
-        value={formValues.username}
-        type="text"
-        name="username"
-        onChange={onInputChange}
-      />
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.submitHandler}>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            value={this.state.account.username}
+            onChange={this.changeHandler}
+          />
 
-      <label>Password </label>
-      <input
-        value={formValues.password}
-        type="password"
-        name="password"
-        onChange={onInputChange}
-      />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="text"
+            name="password"
+            value={this.state.account.password}
+            onChange={this.changeHandler}
+          />
+          <button>Log in</button>
+        </form>
+      </div>
+    );
+  }
+}
 
-      <button onClick={onSubmit} disabled={formDisabled}>
-        Login
-      </button>
-    </div>
-  );
-};
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, { login })(Login);
