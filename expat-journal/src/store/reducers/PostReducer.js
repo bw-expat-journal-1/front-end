@@ -14,7 +14,7 @@ import {
     DELETE_POST_FAILURE
 
 
-} from "./actions/PostActions"
+} from "../actions/PostActions"
 
 
 
