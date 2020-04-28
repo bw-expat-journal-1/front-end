@@ -16,6 +16,9 @@ export const Nav = () => {
         <Link className="link" to="/register">
           Register
         </Link>
+        <Link className="link" to="/post">
+          Post
+        </Link>
       </div>
     </div>
   );
