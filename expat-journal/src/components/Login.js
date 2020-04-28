@@ -24,7 +24,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.login(this.state.account).then(() => {
       console.log("Credentials accepted", this.state);
-      this.props.history.push("");
+      this.props.history.push("/register");
     });
   };
 
@@ -54,6 +54,9 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  isLoggingIn: state.isLoggingIn,
+  username: state.username,
+});
 
 export default connect(mapStateToProps, { login })(Login);
