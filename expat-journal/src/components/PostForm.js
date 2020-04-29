@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {addPost} from "../store/actions/PostActions";
+import { useHistory } from "react-router-dom";
 
 function PostForm (props) {
     const [newPost, setNewPost] = useState({
@@ -9,6 +10,7 @@ function PostForm (props) {
 
     });
     
+    const history  = useHistory();
   const handleChanges = e => {
 
     setNewPost({...newPost, 
@@ -19,24 +21,21 @@ function PostForm (props) {
     
     e.preventDefault();
     props.addPost(newPost);
-    setNewPost({
-        post:"",
-        caption:""
-
-    });
+    history.push('/post');
   }
 
 
 
     return (
         <form>
+            <p> Post :
          <input
             className="photo-img"
-            type="file"
-            name="photo-img"
+            type="text"
+            name="post"
             value={newPost.post}
             onChange={handleChanges}
-          />
+          /> </p>
          <p> Caption :
             <textarea
             className="caption"
@@ -56,8 +55,8 @@ function PostForm (props) {
 }
 
 const mapStateToProps = (state) => ({
-    isPosting: state.isPosting,
-    newPost: state.newPost,
+    isPosting: state.PostReducer.isPosting,
+    newPost: state.PostReducer.newPost,
   });
   
   export default connect(mapStateToProps, { addPost })(PostForm);

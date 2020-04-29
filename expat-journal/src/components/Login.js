@@ -71,6 +71,7 @@ function Login() {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", JSON.stringify(res.data.token));
+        localStorage.setItem("userId", JSON.stringify(res.data.userId));
         history.push("/post");
       })
       .catch((err) => console.log({ err }));
