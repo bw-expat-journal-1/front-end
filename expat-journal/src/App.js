@@ -7,7 +7,7 @@ import { Home } from "./components/Home";
 import { Nav } from "./components/Nav";
 
 import PostForm from "./components/PostForm";
-import Login from "./components/Login";
+import {Login} from "./components/Login";
 function App() {
   return (
     <Router>

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export class Register extends React.Component {
   state = {
@@ -9,6 +10,7 @@ export class Register extends React.Component {
       name: "",
       age: "",
       terms: false,
+      errors: "",
     },
   };
 
@@ -22,9 +24,30 @@ export class Register extends React.Component {
     });
   };
 
+  submitHandler = (e) => {
+    e.preventDefault();
+
+    if (this.state.newAccount.terms === true) {
+      axiosWithAuth()
+        .post("/api/friends", this.state.newAccount)
+        .then((res) => {
+          console.log(res);
+          this.props.history.push("/");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      this.setState({
+        newAccount: {
+          ...this.state.newAccount,
+          errors: "Please accept terms and conditions",
+        },
+      });
+    }
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.submitHandler}>
         <label>Username: </label>
         <input
           type="text"
@@ -64,6 +87,10 @@ export class Register extends React.Component {
           value={this.state.newAccount.age}
           onChange={this.changeHandler}
         />
+
+        <div>
+          <p style={{ color: "red" }}>{this.state.newAccount.errors}</p>
+        </div>
 
         <input
           type="checkbox"

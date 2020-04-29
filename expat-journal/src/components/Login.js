@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { login } from "../store/actions/loginAction";
 
-class Login extends React.Component {
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+
+export class Login extends React.Component {
   state = {
     account: {
       username: "",
@@ -22,10 +23,17 @@ class Login extends React.Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    this.props.login(this.state.account).then(() => {
-      console.log("Credentials accepted", this.state);
-      this.props.history.push("/");
-    });
+    // this.props.login(this.state.account).then(() => {
+    //   console.log("Credentials accepted", this.state);
+    //   this.props.history.push("/");
+    // });
+    axiosWithAuth()
+      .post("/api/login", this.state.account)
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.data.payload));
+        this.props.history.push("/");
+      })
+      .catch((err) => console.log({ err }));
   };
 
   render() {
@@ -53,10 +61,3 @@ class Login extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  isLoggingIn: state.isLoggingIn,
-  username: state.username,
-});
-
-export default connect(mapStateToProps, { login })(Login);
