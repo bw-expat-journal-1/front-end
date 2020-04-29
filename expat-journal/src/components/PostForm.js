@@ -4,26 +4,34 @@ import {addPost} from "../store/actions/PostActions";
 
 function PostForm (props) {
     const [newPost, setNewPost] = useState({
-        post:"",
+        post: null,
         caption:""
 
     });
     
   const handleChanges = e => {
-
-    setNewPost({...newPost, 
-        [e.target.name]:e.target.value});
+    console.log(e.target.files[0]);
+    if (e.target.files && e.target.files[0]) {
+        let img = e.target.files[0];
+      setNewPost({
+          ...newPost,
+          [e.target.name]:e.target.value,
+          post: URL.createObjectURL(img)
+        });
+ 
+        console.log('this is the state', newPost);
+    }
   };
 
   const submitPost = e => {
     
     e.preventDefault();
-    props.addPost(newPost);
+   /* props.addPost(newPost);
     setNewPost({
-        post:"",
+        post:e.target.files[0],
         caption:""
 
-    });
+    });*/
   }
 
 
@@ -56,8 +64,8 @@ function PostForm (props) {
 }
 
 const mapStateToProps = (state) => ({
-    isPosting: state.isPosting,
-    newPost: state.newPost,
+    isPosting: state.PostReducer.isPosting,
+    newPost: state.PostReducer.newPost,
   });
   
   export default connect(mapStateToProps, { addPost })(PostForm);
