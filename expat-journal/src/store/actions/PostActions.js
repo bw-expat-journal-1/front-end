@@ -20,8 +20,9 @@ export const fetchPosts = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_POST_DATA });
     axios()
-      .get("")
+      .get("https://expat-journal-server.herokuapp.com/api/posts")
       .then((res) => {
+        console.log(res);
         dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });
       })
       .catch((err) => {
