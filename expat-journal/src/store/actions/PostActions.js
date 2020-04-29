@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const FETCH_POST_DATA = "FETCH_POST_DATA";
 export const FETCH_POST_SUCCESS = "FETCH_POST_SUCCESS";
@@ -19,8 +19,8 @@ export const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
 export const fetchPosts = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_POST_DATA });
-    axios()
-      .get("")
+    axiosWithAuth()
+      .get("http://localhost:5010/api/posts")
       .then((res) => {
         dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });
       })
@@ -37,8 +37,8 @@ export const fetchPosts = () => {
 export const addPost = (newPost) => {
   return (dispatch) => {
     dispatch({ type: ADD_POST_DATA });
-    axios()
-      .post(``, newPost)
+    axiosWithAuth()
+      .post(`/api/posts`, newPost)
       .then((res) => {
         dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
       })
@@ -55,7 +55,7 @@ export const addPost = (newPost) => {
 export const removePost = (id) => {
   return (dispatch) => {
     dispatch({ type: DELETE_POST_DATA, id: id });
-    axios()
+    axiosWithAuth()
       .delete(``)
       .then((res) => {
         console.log(res);
@@ -74,7 +74,7 @@ export const removePost = (id) => {
 export const updatePost = (newPost) => {
   return (dispatch) => {
     dispatch({ type: UPDATE_POST_DATA });
-    axios()
+    axiosWithAuth()
       .put(``, newPost)
       .then((res) => {
         dispatch({ type: UPDATE_POST_SUCCESS, payload: res.data });
