@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import { connect } from 'react-redux';
+import {addPost} from "../store/actions/PostActions";
 
-export default function PostForm (props) {
+function PostForm (props) {
     const [newPost, setNewPost] = useState({
-        photo:"",
-        caption:"",
-        date:"" 
+        post:"",
+        caption:""
 
     });
     
@@ -14,13 +15,13 @@ export default function PostForm (props) {
         [e.target.name]:e.target.value});
   };
 
-  const submitPost = () => {
+  const submitPost = e => {
     
+    e.preventDefault();
     props.addPost(newPost);
     setNewPost({
-        photo:"",
-        caption:"",
-        date:""
+        post:"",
+        caption:""
 
     });
   }
@@ -33,7 +34,7 @@ export default function PostForm (props) {
             className="photo-img"
             type="file"
             name="photo-img"
-            value={newPost.photo}
+            value={newPost.post}
             onChange={handleChanges}
           />
          <p> Caption :
@@ -44,15 +45,8 @@ export default function PostForm (props) {
             value={newPost.caption}
             onChange={handleChanges}
           /> </p>
-          <p>
-              Date :
-            <input
-            className="date"
-            type="date"
-            name="date"
-            value={newPost.date}
-            onChange={handleChanges}
-          /> </p>
+  
+              
          <button onClick={submitPost}>
 				Upload New Post
 			</button>
@@ -60,3 +54,10 @@ export default function PostForm (props) {
       );
 
 }
+
+const mapStateToProps = (state) => ({
+    isPosting: state.isPosting,
+    newPost: state.newPost,
+  });
+  
+  export default connect(mapStateToProps, { addPost })(PostForm);

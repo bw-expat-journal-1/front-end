@@ -18,11 +18,10 @@ const Posts = props => {
 			
                 <div className="post" key={post.id} >
 
-                <img src={post.photo} className="photo"></img>
+                <img src={post.post} className="photo"></img>
     
                 <p className="caption">{post.caption}</p>
     
-                <p className="date">{post.date}</p>
                
             </div>
 			))}
