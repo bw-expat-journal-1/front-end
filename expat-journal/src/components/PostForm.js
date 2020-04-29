@@ -1,50 +1,41 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {addPost} from "../store/actions/PostActions";
+import { useHistory } from "react-router-dom";
 
 function PostForm (props) {
     const [newPost, setNewPost] = useState({
-        post: null,
+        post:"",
         caption:""
 
     });
     
+    const history  = useHistory();
   const handleChanges = e => {
-    console.log(e.target.files[0]);
-    if (e.target.files && e.target.files[0]) {
-        let img = e.target.files[0];
-      setNewPost({
-          ...newPost,
-          [e.target.name]:e.target.value,
-          post: URL.createObjectURL(img)
-        });
- 
-        console.log('this is the state', newPost);
-    }
+
+    setNewPost({...newPost, 
+        [e.target.name]:e.target.value});
   };
 
   const submitPost = e => {
     
     e.preventDefault();
-   /* props.addPost(newPost);
-    setNewPost({
-        post:e.target.files[0],
-        caption:""
-
-    });*/
+    props.addPost(newPost);
+    history.push('/post');
   }
 
 
 
     return (
         <form>
+            <p> Post :
          <input
             className="photo-img"
-            type="file"
-            name="photo-img"
+            type="text"
+            name="post"
             value={newPost.post}
             onChange={handleChanges}
-          />
+          /> </p>
          <p> Caption :
             <textarea
             className="caption"

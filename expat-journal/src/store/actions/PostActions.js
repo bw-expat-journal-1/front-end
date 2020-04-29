@@ -36,12 +36,15 @@ export const fetchPosts = () => {
 };
 
 export const addPost = (newPost) => {
+ 
   return (dispatch) => {
     dispatch({ type: ADD_POST_DATA });
     axiosWithAuth()
-      .post(`/api/posts`, newPost)
+      .post(`https://expat-journal-server.herokuapp.com/api/posts`, newPost)
       .then((res) => {
+          console.log(res);
         dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
+        //history.push(`/post`)
       })
       .catch((err) => {
         console.log(err);
@@ -72,12 +75,13 @@ export const removePost = (id) => {
   };
 };
 
-export const updatePost = (newPost) => {
+export const updatePost = (updatePost, id) => {
   return (dispatch) => {
     dispatch({ type: UPDATE_POST_DATA });
     axiosWithAuth()
-      .put(``, newPost)
+      .put(`https://expat-journal-server.herokuapp.com/api/posts/${id}`, updatePost)
       .then((res) => {
+          console.log(res.data);
         dispatch({ type: UPDATE_POST_SUCCESS, payload: res.data });
       })
       .catch((err) => {
