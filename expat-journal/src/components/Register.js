@@ -10,7 +10,7 @@ export class Register extends React.Component {
       name: "",
       age: "",
       terms: false,
-      errors: "",
+      // errors: "",
     },
   };
 
@@ -26,10 +26,10 @@ export class Register extends React.Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-
+    console.log(this.state.newAccount);
     if (this.state.newAccount.terms === true) {
       axiosWithAuth()
-        .post("/api/friends", this.state.newAccount)
+        .post("/api/auth/register", this.state.newAccount)
         .then((res) => {
           console.log(res);
           this.props.history.push("/");
