@@ -20,8 +20,9 @@ export const fetchPosts = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_POST_DATA });
     axiosWithAuth()
-      .get("http://localhost:5010/api/posts")
+      .get("https://expat-journal-server.herokuapp.com/api/posts")
       .then((res) => {
+        console.log("GOT POST DATA", res.data);
         dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });
       })
       .catch((err) => {

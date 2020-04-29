@@ -6,8 +6,8 @@ import { Register } from "./components/Register";
 import { Home } from "./components/Home";
 import { Nav } from "./components/Nav";
 
-import PostForm from "./components/PostForm";
-import {Login} from "./components/Login";
+import Posts from "./components/Posts";
+import Login from "./components/Login";
 function App() {
   return (
     <Router>
@@ -17,10 +17,9 @@ function App() {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/post" component={PostForm} />
-          
+          <Route exact path="/post" component={Posts} />
+
           <Route path="/" component={Home} />
-         
         </Switch>
       </div>
     </Router>
