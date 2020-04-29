@@ -71,7 +71,7 @@ function Login() {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", JSON.stringify(res.data.token));
-        history.push("/");
+        history.push("/post");
       })
       .catch((err) => console.log({ err }));
   };

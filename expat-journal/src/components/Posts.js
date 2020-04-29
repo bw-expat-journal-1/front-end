@@ -6,25 +6,28 @@ import PostForm from "./PostForm";
 const Posts = (props) => {
   useEffect(() => {
     props.fetchPosts();
-  });
+  }, []);
 
   return (
     <div className="posts-container">
-      {props.posts.map((post) => (
+      <h1>Posts</h1>
+      {props.post.map((post) => (
         <div className="post" key={post.id}>
-          <img src={post.photo} className="photo"></img>
+          <img src={`${post.post}`} className="photo"></img>
 
           <p className="caption">{post.caption}</p>
         </div>
       ))}
+
       <PostForm addPost={addPost} />
     </div>
   );
 };
 const mapStateToProps = (state) => {
+  console.log(state.post);
   return {
-    post: state.post,
-    error: state.error,
+    post: state.PostReducer.post,
+    error: state.PostReducer.error,
   };
 };
 
