@@ -31,9 +31,12 @@ function UpdatePostForm (props) {
 
 
     return (
-        <div>
+        <div className='edit container'>
         <form>
-        <label htmlFor="post"/>Post :
+        <div className='inputC'>
+        <p>
+            Post :
+        </p>
          <input
             className="photo-img"
             type="text"
@@ -41,8 +44,12 @@ function UpdatePostForm (props) {
             value={updatePost.post}
             onChange={handleChanges}
           /> 
-         <label htmlFor="caption"/> Caption :
-            <textarea
+          </div>
+          <div className='inputC'>
+          <p>
+            Caption :
+          </p>
+            <input
             id="caption"
             className="caption"
             type="text"
@@ -50,11 +57,12 @@ function UpdatePostForm (props) {
             value={updatePost.caption}
             onChange={handleChanges}
           /> 
-            
-        </form>
-        <button onClick={submitPost}>
-				Update Post
+          </div>
+          <button onClick={submitPost}>
+				Edit Post
 			</button>
+        </form>
+        
         </div>
       );
 

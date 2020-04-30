@@ -22,32 +22,37 @@ function PostForm(props) {
   };
 
   return (
-    <form>
-      <p>
-        {" "}
-        Post :
-        <input
-          className="photo-img"
-          type="text"
-          name="post"
-          value={newPost.post}
-          onChange={handleChanges}
-        />{" "}
-      </p>
-      <p>
-        {" "}
-        Caption :
-        <textarea
-          className="caption"
-          type="text"
-          name="caption"
-          value={newPost.caption}
-          onChange={handleChanges}
-        />{" "}
-      </p>
+    <div className='upload container'>
+      <form>
+          <div className='inputC'>
+            <p>
+                Post :
+            </p>
+            <input
+              className="photo-img"
+              type="text"
+              name="post"
+              value={newPost.post}
+              onChange={handleChanges}
+            />
+          </div>
+          <div className='inputC'>
+        <p>
+          Caption :
+          </p>
 
-      <button onClick={submitPost}>Upload New Post</button>
-    </form>
+          <input
+            className="caption"
+            type="text"
+            name="caption"
+            value={newPost.caption}
+            onChange={handleChanges}
+          />
+        </div>
+
+        <button onClick={submitPost}>Upload New Post</button>
+      </form>
+    </div>
   );
 }
 
