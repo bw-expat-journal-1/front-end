@@ -1,11 +1,15 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import Logo from '../logo.jpg';
 
 export const Nav = () => {
   return (
     <div className="navBar">
-      <h1>Expat Journal</h1>
+      <div className='head'>
+        <img className='logo' src={Logo}></img>
+        <h1>Expat Journal</h1>
+      </div>
       <div className="navLinks">
         <Link className="link" to="/">
           Home

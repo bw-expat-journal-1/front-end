@@ -69,7 +69,7 @@ const Posts = (props) => {
                 </button>
               </div>
             )}
-            <div>
+            <div className='comments'>
               {props.comments.map((comment) => (
                 <div key={comment.id}>
                   {comment.postId === post.id && (
@@ -79,6 +79,8 @@ const Posts = (props) => {
                   )}
                 </div>
               ))}
+              </div>
+              <div className='addComment'>
               <form>
                 <label htmlFor="comment" />
                 <input
@@ -96,7 +98,8 @@ const Posts = (props) => {
               >
                 add comment
               </button>
-            </div>
+              </div>
+            
           </div>
         ))}
       </div>
