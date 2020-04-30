@@ -8,20 +8,26 @@ import {
   fetchComments,
   addComment,
 } from "../store/actions/PostActions";
-import { useHistory, useParams } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
+
 
 const Posts = (props) => {
+
+    const getPosts = props.fetchPosts;
+
+    const getComments = props.fetchComments;
+
+  useEffect(() => {
+    getPosts();
+    getComments();
+  }, [getPosts, getComments]);
+
   const [commentInput, setCommentInput] = useState({
     comment: "",
   });
-  useEffect(() => {
-    props.fetchPosts();
-    props.fetchComments();
-  }, []);
 
   const { push } = useHistory();
-  const { id } = useParams();
+
 
   const handlecomment = (e) => {
     setCommentInput({
@@ -49,7 +55,7 @@ const Posts = (props) => {
       <div>
         {props.post.map((post) => (
           <div className="post" key={post.id}>
-            <img src={`${post.post}`} className="photo"></img>
+            <img src={`${post.post}`} className="photo" alt="newPhoto"></img>
 
             <p className="caption">{post.caption}</p>
 
