@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
-import { Register } from "./Components/Register";
-import { Home } from "./Components/Home";
-import { Nav } from "./Components/Nav";
+import { Register } from "./components/Register";
+import { Home } from "./components/Home";
+import { Nav } from "./components/Nav";
 
-import Posts from "./Components/Posts";
-import PostForm from "./Components/PostForm";
-import UpdatePostForm from "./Components/UpdatePostForm";
-import Login from "./Components/Login";
+import Posts from "./components/Posts";
+import PostForm from "./components/PostForm";
+import UpdatePostForm from "./components/UpdatePostForm";
+import Login from "./components/Login";
 function App() {
   return (
     <Router>
