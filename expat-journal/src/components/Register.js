@@ -26,13 +26,13 @@ export class Register extends React.Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log(this.state.newAccount);
+    // console.log(this.state.newAccount);
     if (this.state.newAccount.terms === true) {
       axiosWithAuth()
         .post("/api/auth/register", this.state.newAccount)
         .then((res) => {
-          console.log(res);
-          this.props.history.push("/");
+          // console.log(res);
+          this.props.history.push("/login");
         })
         .catch((err) => console.log(err));
     } else {

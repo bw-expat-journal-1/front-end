@@ -11,10 +11,14 @@ import {
   DELETE_POST_DATA,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
+  FETCH_COMMENTS_SUCCESS,
+  GET_COMMENT_SUCCESS,
+  GET_COMMENT_FETCHING,
 } from "../actions/PostActions";
 
 const initialState = {
   post: [],
+  comments: [],
   isFetching: false,
   isAdding: false,
   isUpdating: false,
@@ -51,7 +55,7 @@ export const PostReducer = (state = initialState, action) => {
       return {
         ...state,
         isAdding: false,
-        post: [...state.post, action.payload],
+        post: action.payload,
         error: "",
       };
     case ADD_POST_FAILURE:
@@ -95,6 +99,21 @@ export const PostReducer = (state = initialState, action) => {
         ...state,
         isDeleting: false,
         error: action.payload,
+      };
+    case FETCH_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        comments: action.payload,
+      };
+    case GET_COMMENT_FETCHING:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case GET_COMMENT_SUCCESS:
+      return {
+        ...state,
+        comments: action.payload,
       };
     default:
       return state;
