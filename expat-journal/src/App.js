@@ -9,6 +9,7 @@ import { Nav } from "./components/Nav";
 import Posts from "./components/Posts";
 import PostForm from "./components/PostForm";
 import UpdatePostForm from "./components/UpdatePostForm";
+import PrivateRoute from './components/PrivateRoute';
 import Login from "./components/Login";
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/post" component={Posts} />
+          <PrivateRoute path="/post" component={Posts} />
           <Route exact path="/postform" component={PostForm}  />
           <Route exact path="/api/posts/:id" component={UpdatePostForm}  />
           <Route path="/" component={Home} />
