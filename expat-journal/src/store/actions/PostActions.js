@@ -58,9 +58,9 @@ export const addPost = (newPost) => {
 
 export const removePost = (id) => {
   return (dispatch) => {
-    dispatch({ type: DELETE_POST_DATA, id: id });
+    dispatch({ type: DELETE_POST_DATA});
     axiosWithAuth()
-      .delete(``)
+      .delete(`https://expat-journal-server.herokuapp.com/api/posts/${id}`)
       .then((res) => {
         console.log(res);
         dispatch({ type: DELETE_POST_SUCCESS, id: id });

@@ -6,9 +6,12 @@ import { useHistory} from "react-router-dom";
 
 
 const Posts = (props) => {
+
+    const getPosts = props.fetchPosts;
+
   useEffect(() => {
-    props.fetchPosts();
-  }, []);
+    getPosts();
+  }, [getPosts]);
 
   const {push}  = useHistory();
 
@@ -17,7 +20,7 @@ const Posts = (props) => {
       <h1>Posts</h1>
       {props.post.map((post) => (
         <div className="post" key={post.id}>
-          <img src={`${post.post}`} className="photo"></img>
+          <img src={`${post.post}`} className="photo" alt="expatPhoto"></img>
 
           <p className="caption">{post.caption}</p>
           <button onClick={() => push(`/api/posts/${post.id}`)}>Edit</button>
