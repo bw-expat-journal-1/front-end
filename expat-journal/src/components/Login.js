@@ -80,7 +80,7 @@ function Login() {
   return (
     <div className="login">
       <header>
-        <h1>ExPat Journal</h1>
+        <h1>Login</h1>
       </header>
 
       <label>Username </label>
@@ -98,7 +98,7 @@ function Login() {
         name="password"
         onChange={onInputChange}
       />
-
+      <br />
       <button onClick={onSubmit} disabled={formDisabled}>
         Login
       </button>
