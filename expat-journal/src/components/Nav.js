@@ -1,13 +1,13 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
-import Logo from '../logo.jpg';
+import Logo from "../logo.jpg";
 
 export const Nav = () => {
   return (
     <div className="navBar">
-      <div className='head'>
-        <img className='logo' src={Logo}></img>
+      <div className="head">
+        <img className="logo" src={Logo}></img>
         <h1>Expat Journal</h1>
       </div>
       <div className="navLinks">
@@ -26,6 +26,10 @@ export const Nav = () => {
         <Link className="link" to="/postform">
           Post Form
         </Link>
+
+        <a href="https://bw-expat-journal-1.github.io/marketing-page/index.html">
+          Landing page
+        </a>
       </div>
     </div>
   );
