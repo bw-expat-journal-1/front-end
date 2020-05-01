@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 /* @headerFont:  'Amatic SC', cursive; */
 /* @bodyFont:   'Open Sans Condensed', sans-serif; */
 
@@ -8,8 +8,8 @@
   max-width: 1400px;
   margin: 0 auto;
 }
-h1{
-  font-family: 'Amatic SC', cursive;
+h1 {
+  font-family: "Amatic SC", cursive;
 }
 /* Nav Bar styling */
 .navBar {
@@ -18,15 +18,15 @@ h1{
   justify-content: space-between;
 }
 
-.navBar .logo{
+.navBar .logo {
   height: 75px;
 }
 
-.navBar .head{
+.navBar .head {
   display: flex;
 }
 
-.navBar .navLinks{
+.navBar .navLinks {
   width: 40%;
   text-decoration: none;
   font-size: 1.5em;
@@ -36,7 +36,7 @@ h1{
   text-decoration: none;
   margin: 0 2%;
   color: black;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
 }
 
 /* Home Styling */
@@ -53,57 +53,55 @@ h1{
   align-items: center;
 }
 /* Post Styling */
-.post{
+.post {
   width: 40%;
   margin: 0 auto;
   border: gray 1px solid;
   margin-bottom: 2em;
 }
 
-.post .caption{
-  
+.post .caption {
   text-align: left;
   padding-left: 1em;
   padding-right: 1em;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
 }
 
-.post img{
+.post img {
   width: 300px;
   padding-top: 1em;
 }
 
-.post .comments{
-  
+.post .comments {
   text-align: left;
   padding-left: 1em;
   padding-right: 1em;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
-.post .addComment{
+.post .addComment {
   display: flex;
   flex-direction: column;
   padding-left: 1em;
   padding-right: 1em;
   margin-bottom: 1em;
-} 
+}
 
-.addComment #comment{
+.addComment input {
   width: 100%;
   margin-bottom: 0.5em;
 }
 
-.addComment button{
-background-color: #96B190;
-border: 1px solid #536E44;    
-border-radius: 5px;
-width: 20%;
+.addComment button {
+  background-color: #96b190;
+  border: 1px solid #536e44;
+  border-radius: 5px;
+  width: 20%;
 }
 
 /* Post upload and edit styling*/
-.container{
-  font-family: 'Amatic SC', cursive;
+.container {
+  font-family: "Amatic SC", cursive;
   font-size: 2em;
   display: flex;
   flex-direction: column;
@@ -111,25 +109,40 @@ width: 20%;
   margin: 0 auto;
 }
 
-.container p{
+.container p {
   height: 50px;
   margin: 0;
 }
 
-.inputC{
+.inputC {
   margin-bottom: 1em;
 }
 
-.inputC .caption{
+.inputC .caption {
   width: 70%;
   height: 100px;
 }
-.inputC .photo-img{
+.inputC .photo-img {
   width: 70%;
 }
 
-.container button{
-  background-color: #96B190;
-  border: 1px solid #536E44;    
+.container button {
+  background-color: #96b190;
+  border: 1px solid #536e44;
   border-radius: 5px;
+}
+
+.inline {
+  display: inline;
+  padding: 0rem 0.5rem;
+}
+
+/* Register Page */
+.registerForm {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 }

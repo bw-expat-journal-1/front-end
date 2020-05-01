@@ -47,7 +47,7 @@ export class Register extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitHandler}>
+      <form onSubmit={this.submitHandler} className="registerForm">
         <label>Username: </label>
         <input
           type="text"

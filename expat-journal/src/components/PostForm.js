@@ -11,6 +11,7 @@ function PostForm(props) {
   });
 
   const history = useHistory();
+
   const handleChanges = (e) => {
     setNewPost({ ...newPost, [e.target.name]: e.target.value });
   };
@@ -22,24 +23,20 @@ function PostForm(props) {
   };
 
   return (
-    <div className='upload container'>
+    <div className="upload container">
       <form>
-          <div className='inputC'>
-            <p>
-                Post :
-            </p>
-            <input
-              className="photo-img"
-              type="text"
-              name="post"
-              value={newPost.post}
-              onChange={handleChanges}
-            />
-          </div>
-          <div className='inputC'>
-        <p>
-          Caption :
-          </p>
+        <div className="inputC">
+          <p>Post :</p>
+          <input
+            className="photo-img"
+            type="text"
+            name="post"
+            value={newPost.post}
+            onChange={handleChanges}
+          />
+        </div>
+        <div className="inputC">
+          <p>Caption :</p>
 
           <input
             className="caption"

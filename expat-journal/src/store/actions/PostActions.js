@@ -19,6 +19,11 @@ export const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
 export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
 export const GET_COMMENT_FETCHING = "GET_COMMENT_FETCHING";
 export const GET_COMMENT_SUCCESS = "GET_COMMENT_SUCCESS";
+export const FETCH_COMMENT_SUCCESS = "FETCH_COMMENT_SUCCESS";
+
+export const DELETE_COMMENT_SUCCESS = "DELETE_COMMENT_SUCCESS";
+
+export const DELETE_COMMENT_FAILURE = "DELETE_COMMENT_FAILURE";
 
 export const fetchPosts = () => {
   return (dispatch) => {
@@ -68,7 +73,7 @@ export const addPost = (newPost) => {
 
 export const removePost = (id) => {
   return (dispatch) => {
-    dispatch({ type: DELETE_POST_DATA});
+    dispatch({ type: DELETE_POST_DATA });
     axiosWithAuth()
       .delete(`https://expat-journal-server.herokuapp.com/api/posts/${id}`)
       .then((res) => {
@@ -167,6 +172,24 @@ export const addComment = (newComment) => {
         console.log(err);
         dispatch({
           type: ADD_POST_FAILURE,
+          payload: err,
+        });
+      });
+  };
+};
+
+export const deleteComment = (id) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .delete(`https://expat-journal-server.herokuapp.com/api/comments/${id}`)
+      .then((res) => {
+        // console.log("delete request!!!!", res);
+        dispatch({ type: DELETE_COMMENT_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: DELETE_COMMENT_FAILURE,
           payload: err,
         });
       });

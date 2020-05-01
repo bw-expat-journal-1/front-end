@@ -7,45 +7,52 @@ import {
   removePost,
   fetchComments,
   addComment,
+  deleteComment,
 } from "../store/actions/PostActions";
 import { useHistory } from "react-router-dom";
 
-
 const Posts = (props) => {
+  const getPosts = props.fetchPosts;
 
-    const getPosts = props.fetchPosts;
-
-    const getComments = props.fetchComments;
+  const getComments = props.fetchComments;
 
   useEffect(() => {
     getPosts();
     getComments();
   }, [getPosts, getComments]);
 
-  const [commentInput, setCommentInput] = useState({
-    comment: "",
-  });
+  const [commentInput, setCommentInput] = useState("");
+
+  // const [commentInput2, setCommentInput2] = useState("");
 
   const { push } = useHistory();
 
+  const handlecomment = (e, id) => {
+    console.log("current target:", e);
+    // console.log(`comment${id}`);
+    // if (e.target.id !== `comment${id}`) {
+    //   setCommentInput2(e.target.value);
+    // } else {
+    // }
+    setCommentInput(e.target.value);
 
-  const handlecomment = (e) => {
-    setCommentInput({
-      ...commentInput,
-      [e.target.name]: e.target.value,
-    });
+    // console.log(e.currentTarget);
+    // console.log(id);
+    // setCommentInput(e.target.value);
   };
 
   const addComments = (postId) => {
     const comment = {
-      comment: commentInput.comment,
+      comment: commentInput,
       postId: postId,
+      userId: localStorage.getItem("userId"),
     };
     props.addComment(comment);
-    setCommentInput({
-      comment: "",
-      userId: localStorage.getItem("userId"),
-    });
+    setCommentInput("");
+  };
+
+  const handleD = (id) => {
+    props.deleteComment(id);
   };
 
   // console.log("commments!!!!!!!!!!!!!!", props.comments);
@@ -69,26 +76,35 @@ const Posts = (props) => {
                 </button>
               </div>
             )}
-            <div className='comments'>
+            <div className="comments">
               {props.comments.map((comment) => (
                 <div key={comment.id}>
                   {comment.postId === post.id && (
                     <div>
-                      <div>{comment.comment}</div>
+                      <div className="inline">{comment.comment}</div>
+                      {comment.userId ===
+                        Number(localStorage.getItem("userId")) && (
+                        <button
+                          className="inline"
+                          onClick={() => handleD(comment.id)}
+                        >
+                          Delete
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>
               ))}
-              </div>
-              <div className='addComment'>
+            </div>
+            <div className="addComment">
               <form>
-                <label htmlFor="comment" />
+                <label htmlFor={`comment${post.id}`} />
                 <input
                   type="text"
-                  id="comment"
-                  name="comment"
-                  value={commentInput.comment}
-                  onChange={handlecomment}
+                  id={`comment${post.id}`}
+                  name={`comment${post.id}`}
+                  value={commentInput}
+                  onChange={(e) => handlecomment(e, post.id)}
                 />
               </form>
               <button
@@ -98,8 +114,7 @@ const Posts = (props) => {
               >
                 add comment
               </button>
-              </div>
-            
+            </div>
           </div>
         ))}
       </div>
@@ -122,4 +137,5 @@ export default connect(mapStateToProps, {
   removePost,
   fetchComments,
   addComment,
+  deleteComment,
 })(Posts);

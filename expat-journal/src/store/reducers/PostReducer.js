@@ -14,6 +14,9 @@ import {
   FETCH_COMMENTS_SUCCESS,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_FETCHING,
+  DELETE_COMMENT_FAILURE,
+  DELETE_COMMENT_DATA,
+  DELETE_COMMENT_SUCCESS,
 } from "../actions/PostActions";
 
 const initialState = {
@@ -115,6 +118,18 @@ export const PostReducer = (state = initialState, action) => {
         ...state,
         comments: action.payload,
       };
+
+    case DELETE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        comments: action.payload,
+      };
+    case DELETE_COMMENT_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
     default:
       return state;
   }
